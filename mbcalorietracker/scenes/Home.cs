@@ -14,7 +14,7 @@ public partial class Home : Node2D
 
     public void _on_button_pressed()
     {
-        output.Text = input.Text;
+        output.Text = "Calories: " + input.Text;
     }
 
 }
