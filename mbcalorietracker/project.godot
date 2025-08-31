@@ -15,6 +15,10 @@ run/main_scene="uid://csi5sdnrpu6s5"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalNode="*res://GameData.tscn"
+
 [display]
 
 window/size/viewport_width=412
@@ -24,6 +28,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="MBCalorieTracker"
+
+[global_group]
+
+Persist="For persistent data"
 
 [rendering]
 
