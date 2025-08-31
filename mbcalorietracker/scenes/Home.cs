@@ -15,6 +15,11 @@ public partial class Home : Node2D
     public void _on_button_pressed()
     {
         output.Text = "Calories: " + input.Text;
+        int value = 0;
+        DateTime dt = DateTime.Now.Date;
+        
+        if (!int.TryParse(input.Text, out value)) return;
+        GD.Print(dt.ToString("yyyy/MM/dd"), value);
     }
 
 }
