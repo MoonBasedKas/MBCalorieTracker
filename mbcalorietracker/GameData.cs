@@ -26,6 +26,7 @@ public partial class GameData : Node
     {
         if (!FileAccess.FileExists("user://savegame.save"))
         {
+            dict = new Godot.Collections.Dictionary<string, Variant>();
             return; // No need to load
         }
 
@@ -58,16 +59,37 @@ public partial class GameData : Node
     /// <param name="calories"></param>
     public static void InsertData(string date, int calories)
     {
+        GD.Print(dict);
         if (!dict.ContainsKey(date))
         {
             var value = new Godot.Collections.Array<int>();
             value.Add(calories);
+            GD.Print(value);
             dict.Add(date, value);
         }
         else
             dict[date].AsGodotArray().Add(calories);
 
         SaveGame();
+    }
+
+    /// <summary>
+    /// Gets the total amount of calories eaten today.
+    /// </summary>
+    /// <param name="date">The date we are looking at</param>
+    /// <returns></returns>
+    public static int GetCaloriesOn(string date)
+    {
+        if (dict == null || !dict.ContainsKey(date)) return 0; // Nothing recorded today.
+        var cals = dict[date].AsGodotArray();
+        int sum = 0;
+        foreach (int val in cals)
+        {
+            sum += val;
+        }
+        return sum;
+
+
     }
 
 }
